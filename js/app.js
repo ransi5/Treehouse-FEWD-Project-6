@@ -44,6 +44,9 @@ function resetBtn() {
     if (checkClass == 'chosen') {
       btn[i].className = '';
     };
+    if (btn[i].disabled === true) {
+      btn[i].removeAttribute('disabled');
+    }
   };
 }
 
@@ -75,6 +78,8 @@ function addPhraseToDisplay(arr){
     li.textContent = listItem;
     if (li.textContent != ' ') {
       li.className = 'letter';
+    } else {
+      li.className = 'space';
     }
     guessPhrase.append(li);
   }
@@ -100,6 +105,7 @@ function checkletter(btntext) {
 qwerty.addEventListener('click', (event)=>{
   if (event.target.tagName == 'BUTTON') {
   event.target.className = 'chosen';
+  event.target.setAttribute('disabled', true);
   btntext = event.target.textContent;
   checkletter(btntext);
   if (letterFound === null) {
